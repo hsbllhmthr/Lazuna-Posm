@@ -218,7 +218,11 @@ export default function CardGridView({
 
                   let details = '';
                   if (k === 'a') {
-                    details = `Ukuran ${formatSize(item.s) || '–'}${item.b ? ` · ${item.b}` : ''}${item.m ? ` · Materi: ${item.m}` : ''}`;
+                    const mats = (Array.isArray(item.ms) && item.ms.length
+                      ? item.ms.slice(0, qty)
+                      : [item.m]
+                    ).filter(Boolean);
+                    details = `Ukuran ${formatSize(item.s) || '–'}${item.b ? ` · ${item.b}` : ''}${mats.length ? ` · Materi: ${mats.join(', ')}` : ''}`;
                   } else if (k === 'o') {
                     details = `Portrait · Ukuran ${formatSize(item.s) || '–'}`;
                   } else if (k === 'k') {

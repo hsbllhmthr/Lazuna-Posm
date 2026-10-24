@@ -30,7 +30,7 @@ export default function EditStoreModal({
         id: '',
         c: '',
         n: '',
-        a: { s: '', b: '', q: 0, m: '', e: [] },
+        a: { s: '', b: '', q: 0, m: '', ms: [], e: [] },
         o: { s: '', q: 0, e: [] },
         k: { s: '', q: 0, e: [] },
         m: { s: 'A3', q: 1, e: [] },
@@ -68,6 +68,26 @@ export default function EditStoreModal({
         [field]: value
       }
     }));
+  };
+
+  const handleAkrilikMateriChange = (index, value) => {
+    setFormData(prev => {
+      const qty = Math.max(0, Number(prev.a?.q) || 0);
+      const currentMs = Array.isArray(prev.a?.ms) ? [...prev.a.ms] : (prev.a?.m ? [prev.a.m] : []);
+      while (currentMs.length <= index) {
+        currentMs.push('');
+      }
+      currentMs[index] = value;
+      const summaryM = currentMs.slice(0, qty).filter(Boolean).join(', ');
+      return {
+        ...prev,
+        a: {
+          ...prev.a,
+          ms: currentMs,
+          m: summaryM
+        }
+      };
+    });
   };
 
   const handleAddPhotos = async (key, files) => {
@@ -175,10 +195,21 @@ export default function EditStoreModal({
       return;
     }
 
+    const akrilikQty = Math.max(0, Number(formData.a?.q) || 0);
+    const rawMs = Array.isArray(formData.a?.ms)
+      ? formData.a.ms
+      : (formData.a?.m ? [formData.a.m] : []);
+    const trimmedMs = Array.from({ length: akrilikQty }, (_, i) => String(rawMs[i] || '').trim());
+
     const payload = {
       ...formData,
       c: formData.c.trim(),
       n: formData.n.trim(),
+      a: {
+        ...formData.a,
+        ms: trimmedMs,
+        m: trimmedMs.filter(Boolean).join(', ')
+      },
       at: Date.now()
     };
     if (!payload.id) {
@@ -283,8 +314,8 @@ export default function EditStoreModal({
                 </span>
               </div>
               <div className="p-3.5 space-y-3">
-                <div className="grid grid-cols-2 sm:grid-cols-12 gap-2.5">
-                  <div className="sm:col-span-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div>
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Ukuran</label>
                     <Input 
                       placeholder="mis. 58x110" 
@@ -294,7 +325,7 @@ export default function EditStoreModal({
                       className="h-8 text-xs"
                     />
                   </div>
-                  <div className="sm:col-span-3">
+                  <div>
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Bahan</label>
                     <Input 
                       placeholder="mis. DURATRANS" 
@@ -304,7 +335,7 @@ export default function EditStoreModal({
                       className="h-8 text-xs"
                     />
                   </div>
-                  <div className="sm:col-span-2">
+                  <div>
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Jumlah</label>
                     <Input 
                       type="number" 
@@ -315,17 +346,33 @@ export default function EditStoreModal({
                       className="h-8 text-xs"
                     />
                   </div>
-                  <div className="sm:col-span-4">
-                    <label className="text-[11px] font-medium text-slate-600 block mb-1">Nama Materi</label>
-                    <Input 
-                      placeholder="Nama materi akrilik" 
-                      value={formData.a?.m || ''} 
-                      disabled={isReadOnly}
-                      onChange={e => handlePOSMFieldChange('a', 'm', e.target.value)}
-                      className="h-8 text-xs"
-                    />
-                  </div>
                 </div>
+
+                {(formData.a?.q || 0) > 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                    {Array.from({ length: Math.min(20, Math.max(0, Number(formData.a?.q) || 0)) }).map((_, idx) => {
+                      const currentMs = Array.isArray(formData.a?.ms)
+                        ? formData.a.ms
+                        : (formData.a?.m ? [formData.a.m] : []);
+                      const val = currentMs[idx] ?? '';
+                      return (
+                        <div key={idx}>
+                          <label className="text-[11px] font-medium text-slate-600 block mb-1">
+                            Nama Materi {idx + 1}
+                          </label>
+                          <Input 
+                            placeholder={`Nama materi akrilik ${idx + 1}`}
+                            value={val}
+                            disabled={isReadOnly}
+                            onChange={e => handleAkrilikMateriChange(idx, e.target.value)}
+                            className="h-8 text-xs"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
                 <PhotoUploader 
                   photos={formData.a?.e || []}
                   onAddPhotos={files => handleAddPhotos('a', files)}

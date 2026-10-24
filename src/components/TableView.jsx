@@ -259,7 +259,23 @@ export default function TableView({
                     <TableCell className="border-l border-border text-xs">{formatSize(store.a.s) || '–'}</TableCell>
                     <TableCell className="text-xs">{store.a.b || '–'}</TableCell>
                     <TableCell className="text-center text-xs font-semibold">{store.a.q}</TableCell>
-                    <TableCell className="text-xs max-w-[120px] truncate" title={store.a.m || ''}>{store.a.m || '–'}</TableCell>
+                    <TableCell className="text-xs">
+                      {(() => {
+                        const mats = (Array.isArray(store.a?.ms) && store.a.ms.length
+                          ? store.a.ms.slice(0, store.a.q)
+                          : [store.a?.m]
+                        ).filter(Boolean);
+                        return mats.length > 0 ? (
+                          mats.map((m, i) => (
+                            <div key={i} className="text-[11px] truncate max-w-[140px]" title={m}>
+                              {mats.length > 1 ? `${i + 1}. ${m}` : m}
+                            </div>
+                          ))
+                        ) : (
+                          '–'
+                        );
+                      })()}
+                    </TableCell>
                     <TableCell>{renderEvidenceCell(store.a.e)}</TableCell>
                   </>
                 ) : (

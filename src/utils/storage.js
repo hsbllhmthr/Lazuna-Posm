@@ -21,7 +21,12 @@ export function normStore(d) {
   });
   if (!d.id) d.id = String(d.c || 'S_' + Date.now()).replace(/[^A-Za-z0-9_-]/g, '_');
   if (d.no === undefined) d.no = 0;
-  if (d.a.m === undefined) d.a.m = '';
+  if (!Array.isArray(d.a.ms)) {
+    d.a.ms = d.a.m ? [String(d.a.m)] : [];
+  }
+  if (d.a.m === undefined) {
+    d.a.m = d.a.ms.filter(Boolean).join(', ');
+  }
   
   d.m.s = 'A3';
   d.m.q = 1;

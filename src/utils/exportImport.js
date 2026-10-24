@@ -20,7 +20,7 @@ export function exportToCSV(stores) {
     d.a?.s || '',
     d.a?.b || '',
     d.a?.q || 0,
-    d.a?.m || '',
+    (Array.isArray(d.a?.ms) && d.a.ms.length ? d.a.ms.slice(0, d.a?.q || 0) : [d.a?.m]).filter(Boolean).join(' | '),
     photoCountStr(d.a?.e),
     d.o?.s || '',
     d.o?.q || 0,
