@@ -53,15 +53,15 @@ export default function SubmissionLinksModal({ isOpen, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 font-sans"
+      className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-0 sm:p-4 font-sans"
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-xl w-full max-w-lg shadow-xl border border-slate-200 overflow-hidden text-slate-900 animate-in fade-in zoom-in-95 duration-150"
+        className="bg-white w-full h-dvh sm:h-auto sm:max-w-lg sm:rounded-xl shadow-xl border-0 sm:border border-slate-200 flex flex-col overflow-hidden text-slate-900 animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-4 pb-2">
+        <div className="flex items-center justify-between px-5 pt-4 pb-2 shrink-0">
           <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900">
             Link & Form Pengajuan
           </h3>
@@ -76,7 +76,7 @@ export default function SubmissionLinksModal({ isOpen, onClose }) {
         </div>
 
         {/* Clean Divided List */}
-        <div className="px-5 pb-4 divide-y divide-slate-100">
+        <div className="px-5 pb-4 divide-y divide-slate-100 overflow-y-auto flex-1">
           {SUBMISSION_LINKS.map((item) => {
             const isCopied = copiedId === item.id;
             return (

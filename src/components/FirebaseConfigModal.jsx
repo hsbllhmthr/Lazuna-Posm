@@ -153,10 +153,10 @@ VITE_FIREBASE_APP_ID=${config.appId || ''}`;
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
-      <div className="bg-white rounded-xl w-full max-w-lg shadow-xl border border-slate-200 overflow-hidden text-slate-900 animate-in fade-in zoom-in-95 duration-150">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-0 sm:p-4">
+      <div className="bg-white w-full h-dvh sm:h-auto sm:max-w-lg sm:rounded-xl shadow-xl border-0 sm:border border-slate-200 flex flex-col overflow-hidden text-slate-900 animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-2.5">
             <h3 className="font-semibold text-sm text-slate-900">
               Koneksi Database
@@ -181,7 +181,7 @@ VITE_FIREBASE_APP_ID=${config.appId || ''}`;
         </div>
 
         {/* Body Content */}
-        <div className="p-5 space-y-4 max-h-[85vh] overflow-y-auto text-xs">
+        <div className="p-5 space-y-4 flex-1 sm:max-h-[85vh] overflow-y-auto text-xs">
           {/* Active Cloud Connection Details */}
           {isConnected && (
             <div className="bg-slate-50 border border-slate-200/80 rounded-lg p-3 space-y-2.5">

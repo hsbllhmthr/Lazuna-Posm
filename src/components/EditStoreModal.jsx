@@ -190,11 +190,11 @@ export default function EditStoreModal({
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col p-0 overflow-hidden bg-slate-50 border border-slate-200 shadow-xl sm:rounded-xl">
+      <DialogContent className="w-full h-dvh max-h-dvh sm:h-auto sm:max-w-2xl sm:max-h-[90vh] flex flex-col p-0 gap-0 overflow-hidden bg-slate-50 border-0 sm:border border-slate-200 shadow-xl rounded-none sm:rounded-xl">
         {/* Header */}
-        <DialogHeader className="px-5 pt-4.5 pb-1 bg-slate-50">
-          <div className="flex items-center gap-2 pr-6">
-            <DialogTitle className="font-heading text-base font-bold text-slate-900">
+        <DialogHeader className="px-4 sm:px-5 pt-4 pb-2 bg-slate-50 text-left shrink-0">
+          <div className="flex items-center gap-2 pr-8">
+            <DialogTitle className="font-heading text-sm sm:text-base font-bold text-slate-900 leading-snug text-left">
               {isNew ? 'Tambah Store Baru' : (isReadOnly ? `Detail Store: ${formData.c} – ${formData.n}` : `Edit Store: ${formData.c} – ${formData.n}`)}
             </DialogTitle>
           </div>
@@ -204,14 +204,14 @@ export default function EditStoreModal({
         </DialogHeader>
 
         {isReadOnly && (
-          <div className="mx-5 mt-2.5 p-2.5 rounded-lg bg-amber-50/90 text-amber-800 text-xs flex items-center gap-2 border border-amber-200/80">
+          <div className="mx-4 sm:mx-5 mt-1.5 p-2.5 rounded-lg bg-amber-50/90 text-amber-800 text-xs flex items-center gap-2 border border-amber-200/80 shrink-0">
             <AlertCircle size={15} className="shrink-0 text-amber-600" />
             <span>Akun Administrator hanya memiliki izin <strong>membaca data (View-Only)</strong>. Untuk menambah, mengedit, atau menghapus data, silakan gunakan akun Superadmin.</span>
           </div>
         )}
 
         {errorMsg && (
-          <div className="mx-5 mt-3 p-3 rounded-lg bg-red-50 text-red-700 text-xs flex items-center gap-2 border border-red-200">
+          <div className="mx-4 sm:mx-5 mt-2 p-3 rounded-lg bg-red-50 text-red-700 text-xs flex items-center gap-2 border border-red-200 shrink-0">
             <AlertCircle size={15} className="shrink-0 text-red-600" />
             <span>{errorMsg}</span>
           </div>
