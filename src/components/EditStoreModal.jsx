@@ -30,7 +30,7 @@ export default function EditStoreModal({
         id: '',
         c: '',
         n: '',
-        a: { s: '', b: '', q: 0, e: [] },
+        a: { s: '', b: '', q: 0, m: '', e: [] },
         o: { s: '', q: 0, e: [] },
         k: { s: '', q: 0, e: [] },
         m: { s: 'A3', q: 1, e: [] },
@@ -283,8 +283,8 @@ export default function EditStoreModal({
                 </span>
               </div>
               <div className="p-3.5 space-y-3">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  <div>
+                <div className="grid grid-cols-2 sm:grid-cols-12 gap-2.5">
+                  <div className="sm:col-span-3">
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Ukuran</label>
                     <Input 
                       placeholder="mis. 58x110" 
@@ -294,7 +294,7 @@ export default function EditStoreModal({
                       className="h-8 text-xs"
                     />
                   </div>
-                  <div>
+                  <div className="sm:col-span-3">
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Bahan</label>
                     <Input 
                       placeholder="mis. DURATRANS" 
@@ -304,7 +304,7 @@ export default function EditStoreModal({
                       className="h-8 text-xs"
                     />
                   </div>
-                  <div>
+                  <div className="sm:col-span-2">
                     <label className="text-[11px] font-medium text-slate-600 block mb-1">Jumlah</label>
                     <Input 
                       type="number" 
@@ -312,6 +312,16 @@ export default function EditStoreModal({
                       value={formData.a?.q ?? 0} 
                       disabled={isReadOnly}
                       onChange={e => handlePOSMFieldChange('a', 'q', +e.target.value || 0)}
+                      className="h-8 text-xs"
+                    />
+                  </div>
+                  <div className="sm:col-span-4">
+                    <label className="text-[11px] font-medium text-slate-600 block mb-1">Nama Materi</label>
+                    <Input 
+                      placeholder="Nama materi akrilik" 
+                      value={formData.a?.m || ''} 
+                      disabled={isReadOnly}
+                      onChange={e => handlePOSMFieldChange('a', 'm', e.target.value)}
                       className="h-8 text-xs"
                     />
                   </div>

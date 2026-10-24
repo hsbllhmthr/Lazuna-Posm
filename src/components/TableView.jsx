@@ -164,7 +164,7 @@ export default function TableView({
           <TableRow className="border-b border-zinc-200 bg-zinc-50 hover:bg-transparent">
             <TableHead rowSpan={2} className="w-10 text-center text-xs font-semibold text-zinc-600">No</TableHead>
             <TableHead rowSpan={2} className="min-w-[140px] text-xs font-semibold text-zinc-700">Store</TableHead>
-            <TableHead colSpan={4} className="text-center border-l border-zinc-200 text-xs font-semibold text-zinc-700">
+            <TableHead colSpan={5} className="text-center border-l border-zinc-200 text-xs font-semibold text-zinc-700">
               Akrilik Dinding
             </TableHead>
             <TableHead colSpan={3} className="text-center border-l border-zinc-200 text-xs font-semibold text-zinc-700">
@@ -188,6 +188,7 @@ export default function TableView({
             <th className="border-l border-border px-2 py-1 font-normal text-left">Ukuran</th>
             <th className="px-2 py-1 font-normal text-left">Bahan</th>
             <th className="px-2 py-1 font-normal text-center">Jml</th>
+            <th className="px-2 py-1 font-normal text-left">Materi</th>
             <th className="px-2 py-1 font-normal text-left">Foto</th>
 
             <th className="border-l border-border px-2 py-1 font-normal text-left">Ukuran</th>
@@ -258,10 +259,11 @@ export default function TableView({
                     <TableCell className="border-l border-border text-xs">{formatSize(store.a.s) || '–'}</TableCell>
                     <TableCell className="text-xs">{store.a.b || '–'}</TableCell>
                     <TableCell className="text-center text-xs font-semibold">{store.a.q}</TableCell>
+                    <TableCell className="text-xs max-w-[120px] truncate" title={store.a.m || ''}>{store.a.m || '–'}</TableCell>
                     <TableCell>{renderEvidenceCell(store.a.e)}</TableCell>
                   </>
                 ) : (
-                  <TableCell colSpan={4} className="border-l border-border text-center text-muted-foreground/30 text-xs">
+                  <TableCell colSpan={5} className="border-l border-border text-center text-muted-foreground/30 text-xs">
                     –
                   </TableCell>
                 )}

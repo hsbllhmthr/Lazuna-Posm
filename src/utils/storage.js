@@ -21,6 +21,7 @@ export function normStore(d) {
   });
   if (!d.id) d.id = String(d.c || 'S_' + Date.now()).replace(/[^A-Za-z0-9_-]/g, '_');
   if (d.no === undefined) d.no = 0;
+  if (d.a.m === undefined) d.a.m = '';
   
   d.m.s = 'A3';
   d.m.q = 1;

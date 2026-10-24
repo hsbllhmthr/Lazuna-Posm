@@ -3,7 +3,7 @@ import { POS_KEYS, normStore } from './storage';
 export function exportToCSV(stores) {
   const headers = [
     'No', 'Store Code', 'Nama Store',
-    'Akrilik Ukuran', 'Akrilik Bahan', 'Akrilik Jumlah', 'Akrilik Evidence',
+    'Akrilik Ukuran', 'Akrilik Bahan', 'Akrilik Jumlah', 'Akrilik Materi', 'Akrilik Evidence',
     'Outdoor Ukuran', 'Outdoor Jumlah', 'Outdoor Evidence',
     'Kanopi Ukuran', 'Kanopi Jumlah', 'Kanopi Evidence',
     'Menu A3 Evidence',
@@ -20,6 +20,7 @@ export function exportToCSV(stores) {
     d.a?.s || '',
     d.a?.b || '',
     d.a?.q || 0,
+    d.a?.m || '',
     photoCountStr(d.a?.e),
     d.o?.s || '',
     d.o?.q || 0,

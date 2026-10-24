@@ -218,7 +218,7 @@ export default function CardGridView({
 
                   let details = '';
                   if (k === 'a') {
-                    details = `Ukuran ${formatSize(item.s) || '–'}${item.b ? ` · ${item.b}` : ''}`;
+                    details = `Ukuran ${formatSize(item.s) || '–'}${item.b ? ` · ${item.b}` : ''}${item.m ? ` · Materi: ${item.m}` : ''}`;
                   } else if (k === 'o') {
                     details = `Portrait · Ukuran ${formatSize(item.s) || '–'}`;
                   } else if (k === 'k') {
