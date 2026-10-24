@@ -40,30 +40,28 @@ export default function Navbar({
   ];
 
   return (
-    <header className="px-4 sm:px-8 pt-6 pb-2">
-      {/* Top Row: Title + Right Profile & Notification */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <header className="px-4 sm:px-8 pt-4 sm:pt-6 pb-2">
+      {/* Top Row: Title (Left) + Notification & Profile (Right) aligned on a single row */}
+      <div className="flex items-center justify-between gap-2 sm:gap-4">
         {/* Left: Mobile Toggle + Title */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <Button 
             variant="ghost" 
             size="icon" 
             onClick={onOpenMobileMenu}
-            className="lg:hidden h-9 w-9 text-slate-600 hover:text-slate-900"
+            className="lg:hidden h-8 w-8 sm:h-9 sm:w-9 -ml-1 text-slate-600 hover:text-slate-900 shrink-0"
             aria-label="Open sidebar"
           >
             <Menu size={20} />
           </Button>
 
-          <div>
-            <h1 className="font-heading text-2xl font-bold tracking-tight text-slate-900">
-              Dashboard
-            </h1>
-          </div>
+          <h1 className="font-heading text-lg sm:text-2xl font-bold tracking-tight text-slate-900 truncate">
+            Dashboard
+          </h1>
         </div>
 
-        {/* Right: Notification Bell + User Profile matching reference */}
-        <div className="flex items-center gap-3.5 sm:gap-4 self-end sm:self-auto">
+        {/* Right: Notification Bell + User Profile aligned on top-right */}
+        <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
           {/* Realtime Notification Bell */}
           <NotificationDropdown 
             notifications={notifications}
@@ -79,27 +77,27 @@ export default function Navbar({
               <button
                 type="button"
                 onClick={() => setIsProfileOpen((prev) => !prev)}
-                className="flex items-center gap-3 py-1 px-1.5 rounded-xl hover:bg-slate-100/70 transition-colors cursor-pointer text-left"
+                className="flex items-center gap-2 sm:gap-3 py-1 pl-1 pr-1 sm:px-1.5 rounded-xl hover:bg-slate-100/70 transition-colors cursor-pointer text-left"
               >
                 {/* Circular Initial Avatar */}
-                <div className="h-10 w-10 rounded-full bg-slate-900 text-white font-heading font-bold text-sm shrink-0 shadow-xs flex items-center justify-center">
+                <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-slate-900 text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-xs flex items-center justify-center">
                   {currentUser.name?.trim().charAt(0).toUpperCase() || 'A'}
                 </div>
 
                 {/* Name + Chevron & Role */}
-                <div className="flex flex-col leading-tight">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[13.5px] font-bold text-slate-800 tracking-tight">
+                <div className="flex flex-col leading-tight min-w-0">
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <span className="text-xs sm:text-[13.5px] font-bold text-slate-800 tracking-tight truncate max-w-[105px] min-[390px]:max-w-[135px] sm:max-w-none">
                       {currentUser.name}
                     </span>
                     <ChevronDown 
-                      size={15} 
-                      className={`text-slate-600 stroke-[2] transition-transform duration-200 ${
+                      size={14} 
+                      className={`text-slate-600 stroke-[2] shrink-0 transition-transform duration-200 ${
                         isProfileOpen ? 'rotate-180' : ''
                       }`} 
                     />
                   </div>
-                  <span className="text-xs text-slate-500 font-normal mt-0.5">
+                  <span className="text-[10px] sm:text-xs text-slate-500 font-normal mt-0.5 truncate">
                     {currentUser.role}
                   </span>
                 </div>
@@ -146,7 +144,7 @@ export default function Navbar({
       </div>
 
       {/* Under Title: Navigation Tabs with clean underline */}
-      <div className="flex items-center gap-6 mt-4 border-b border-slate-200/60 text-xs">
+      <div className="flex items-center justify-between sm:justify-start gap-3 sm:gap-6 mt-4 border-b border-slate-200/60 text-xs overflow-x-auto no-scrollbar whitespace-nowrap">
         {tabs.map((tab) => {
           const isActive = viewMode === tab.id;
           return (

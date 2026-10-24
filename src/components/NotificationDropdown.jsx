@@ -97,7 +97,7 @@ export default function NotificationDropdown({
 
       {/* Minimalist Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-lg border border-slate-200 z-50 overflow-hidden text-left">
+        <div className="fixed left-4 right-4 top-16 sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-80 bg-white rounded-xl shadow-lg border border-slate-200 z-50 overflow-hidden text-left">
           {recentNotifications.length === 0 ? (
             /* Clean Empty State: Cukup teks dan icon saja */
             <div className="py-8 flex flex-col items-center justify-center gap-2 text-slate-400">
