@@ -20,7 +20,7 @@ export const REGISTERED_USERS = [
     email: 'andryantospp@gmail.com',
     username: 'andryantospp',
     name: 'Andryanto Suppu',
-    role: 'Administrator', // View-only
+    role: 'Superadmin', // CRUD Penuh
     password: 'lazuna123'
   },
   {
